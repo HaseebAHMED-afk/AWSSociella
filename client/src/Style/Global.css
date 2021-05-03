@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+.login-signup-btns{
+    margin-left: auto !important;
+}
+a{
+    text-decoration: none;
+}
+.login-signup-btns button{
+    margin-left: auto;
+}
+.signup-btn{
+    margin-left: 10px !important;
+}
+.nav-links{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-links p{
+    margin: 10px;
+}
+.home-input{
+    width: 55% !important;
+    margin: 15px auto !important;
+}
+
+.diary-card{
+    width: 40rem;
+    margin: 15px auto;
+   
+}
+
+.your-diary-heading{
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    margin: 25px;
+}
+.your-diary-card{
+    width: 18rem;
+    margin: 15px;
+}
+.your-diary-section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.profile-page{
+    text-align: center;
+    margin: 225px 0;
+}
+.profile-avatar{
+    height: 10rem !important;
+    width: 10rem !important ;
+    margin: 25px auto;
+}
+
+.profile-details{
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.login-page{
+    text-align: center;
+    width: 20%;
+    margin: auto;
+}
+
+.login-heading{
+    margin: 125px auto 10px auto ;
+}
+
+.login-field{
+
+    display: flex !important ;
+    flex-direction: column !important;
+    margin: 15px auto !important;
+    width: 100% !important;
+}
+
+@media only screen and (max-width: 950px) {
+    .login-page{
+        width: 75%;
+    }
+}
