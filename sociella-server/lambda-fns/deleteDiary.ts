@@ -5,7 +5,7 @@ async function deleteDiary(diaryId:string) {
     const params = {
         TableName: process.env.SOCIELLA_TABLE,
         Key:{
-            diaryId: diaryId
+            id: diaryId
         }
     }
 

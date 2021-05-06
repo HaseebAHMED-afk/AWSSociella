@@ -1,7 +1,6 @@
 import addDiary from './addDiary'
 import deleteDiary from './deleteDiary'
 import getDiaries from './getDiaries'
-import getDiaryByUser from './getDiaryByUser'
 
 import Diary from './Diary'
 
@@ -25,8 +24,6 @@ exports.handler = async ( event : AppSyncEvent ) =>{
             return await deleteDiary(event.arguments.diaryId)
         case 'getDiaries':
             return await getDiaries()
-        case 'getDiaryByUser':
-            return await getDiaryByUser(event.arguments.user)
         default:
             return null
     }

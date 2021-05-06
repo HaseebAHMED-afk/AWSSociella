@@ -15,11 +15,10 @@ input DiaryInput{
 }
 
 type Query{
-    getDiaries: [Diary],
-    getDiaryByUser(user: String!) : [Diary]
+    getDiaries: [Diary]
 }
 
 type Mutation{
     addDiary(diary: DiaryInput!) : Diary,
-    deleteDiary(diaryId: String!) : Diary
+    deleteDiary(diaryId: String!) : String
 }
