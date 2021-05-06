@@ -1,0 +1,25 @@
+type Diary{
+    id: ID!,
+    user: String!,
+    title: String!,
+    content: String!,
+    timestamp: String!
+}
+
+input DiaryInput{
+    id: ID!,
+    user: String!,
+    title: String!,
+    content: String!,
+    timestamp: String!
+}
+
+type Query{
+    getDiaries: [Diary],
+    getDiaryByUser(user: String!) : [Diary]
+}
+
+type Mutation{
+    addDiary(diary: DiaryInput!) : Diary,
+    deleteDiary(diaryId: String!) : Diary
+}
