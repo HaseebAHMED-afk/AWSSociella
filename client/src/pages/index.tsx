@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import NavBar from "../Components/Navbar"
 import { Jumbotron, Button } from "react-bootstrap"
 import { MenuItem, Select, TextField } from "@material-ui/core"
@@ -8,13 +8,16 @@ import random from 'random-name'
 import DiaryCard from "../Components/DiaryCard"
 import { OAuthContext } from "../OAuthContext"
 import moment from 'moment'
+import {API} from 'aws-amplify'
+import {addDiary} from '../graphql/mutations'
+import {getDiaries} from '../graphql/queries'
 
 interface postValues {
   title: string
-  description: string
+  content: string
   id: string
   user: string
-  visible: boolean
+  isPublic: boolean
   timestamp: string
 }
 
@@ -22,27 +25,40 @@ export default function Home() {
 
   const { user } = useContext<any>(OAuthContext)
 
-  console.log(user);
-  
+  const [data , setData] = useState()
+
 
   const [title , setTitle] = useState('')
-  const [description , setDescription] = useState('')
+  const [content , setContent] = useState('')
   const [visible , setVisible] = useState<any>(true)
 
+  const fetchPost = async () => {
+    let {data} = await API.graphql({query: getDiaries})
+    setData(data.getDiaries)
+  }
+
+  useEffect(()=> {fetchPost() }, [])
+
   const handleSubmit = async () => {
+
     const newPost : postValues ={
-      user: `${random.first()} ${random.last()}`,
+      user: `${user.signInUserSession.idToken.payload.email}`,
       title,
-      description,
+      content,
       id: nanoid(),
-      visible,
+      isPublic: visible,
       timestamp: `${moment().format('MMMM Do YYYY, h:mm:ss a')}`
     }
 
-    console.log(newPost);
+    await API.graphql({query:addDiary , variables:{
+      diary: newPost
+    }})
+
+    fetchPost()
+    
     
     setTitle('')
-    setDescription('')
+    setContent('')
     
   }
 
@@ -86,13 +102,16 @@ export default function Home() {
           style={{margin: '15px 0'}}
           multiline={true}
           rows={10}
-          value={description}
-          onChange={(e) => setDescription(e.target.value) }
+          value={content}
+          onChange={(e) => setContent(e.target.value) }
         />
         <Button variant='success' onClick={handleSubmit} >Post</Button>
       </Jumbotron>
-      <DiaryCard />
-      <DiaryCard />
+       {
+         data && data.filter((d)=> d.isPublic === true).map((post , i)=> (
+           <DiaryCard id={post.id} user={post.user} title={post.title} content={post.content} timestamp={post.timestamp} />
+         ))
+       }
       </div>
         )
       }

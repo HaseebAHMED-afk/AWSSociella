@@ -1,20 +1,20 @@
 import React from "react"
 import {  Card } from "react-bootstrap"
 
-const DiaryCard = () => {
+const DiaryCard = ({id , user , title , content ,timestamp}) => {
   return (
     <div>
       <Card className='diary-card'>
         <Card.Body>
         <Card.Subtitle className="mb-2 text-muted">
-           User
+           {user}
           </Card.Subtitle>
-          <Card.Title>Title</Card.Title>
+          <Card.Title>{title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-           Date & Time
+           {timestamp}
           </Card.Subtitle>
           <Card.Text>
-            Content
+            {content}
           </Card.Text>
         </Card.Body>
       </Card>
