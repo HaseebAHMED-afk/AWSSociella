@@ -1,9 +1,15 @@
 import { Typography } from "@material-ui/core"
 import { Link } from "gatsby"
-import React from "react"
+import React, { useContext } from "react"
 import { Button, Navbar } from "react-bootstrap"
+import { Auth } from 'aws-amplify'
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types"
+import { OAuthContext } from "../OAuthContext"
+
 
 const NavBar = () => {
+
+  const {user} = useContext<any>(OAuthContext)
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>Sociella</Navbar.Brand>
@@ -14,7 +20,16 @@ const NavBar = () => {
           <Typography> <Link to='/YourDiary' >Your diary</Link> </Typography>
         </div>
         <div className="login-signup-btns">
-          <Button variant="dark" > Log In </Button>
+          {
+            !user ? (<Button variant="dark" onClick={()=> Auth.federatedSignIn({
+              provider: CognitoHostedUIIdentityProvider.Google
+            })} > Log In </Button>) : (
+              <div>
+              <Button variant="dark" onClick={() => Auth.signOut()} > Log Out </Button>
+              <Navbar.Brand>{user.signInUserSession.idToken.payload.email}</Navbar.Brand>
+              </div>
+            )
+          }
         </div>
       </Navbar.Collapse>
     </Navbar>

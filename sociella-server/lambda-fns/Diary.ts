@@ -3,7 +3,8 @@ type Diary = {
     user: string,
     title: string,
     content: string,
-    timestamp: string
+    timestamp: string,
+    isPublic: boolean
 }
 
 export default Diary

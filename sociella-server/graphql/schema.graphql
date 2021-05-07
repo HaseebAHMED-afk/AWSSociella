@@ -3,6 +3,7 @@ type Diary{
     user: String!,
     title: String!,
     content: String!,
+    isPublic: Boolean!,
     timestamp: String!
 }
 
@@ -11,7 +12,8 @@ input DiaryInput{
     user: String!,
     title: String!,
     content: String!,
-    timestamp: String!
+    timestamp: String!,
+    isPublic: Boolean!,
 }
 
 type Query{

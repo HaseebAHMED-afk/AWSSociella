@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import NavBar from "../Components/Navbar"
 import { Jumbotron, Button } from "react-bootstrap"
 import { TextField } from "@material-ui/core"
 import { nanoid } from 'nanoid'
 import random from 'random-name'
 import DiaryCard from "../Components/DiaryCard"
+import { OAuthContext } from "../OAuthContext"
 
 interface postValues {
   title: string
@@ -14,6 +15,11 @@ interface postValues {
 }
 
 export default function Home() {
+
+  const { user } = useContext<any>(OAuthContext)
+
+  console.log(user);
+  
 
   const [title , setTitle] = useState('')
   const [description , setDescription] = useState('')

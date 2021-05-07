@@ -1,0 +1,15 @@
+projects:
+  SociellaAPI:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-east-2
+        apiId: vjiwbyimbrew5oev4ljlrhvmp4
+        maxDepth: 2
