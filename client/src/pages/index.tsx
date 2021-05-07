@@ -109,7 +109,7 @@ export default function Home() {
       </Jumbotron>
        {
          data && data.filter((d)=> d.isPublic === true).map((post , i)=> (
-           <DiaryCard id={post.id} user={post.user} title={post.title} content={post.content} timestamp={post.timestamp} />
+           <DiaryCard key={i} id={post.id} user={post.user} title={post.title} content={post.content} timestamp={post.timestamp} />
          ))
        }
       </div>
