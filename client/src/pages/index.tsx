@@ -44,7 +44,12 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      <Jumbotron className="home-input">
+      {
+        !user ? (
+          <h1 className='login-heading' >You need to login first.</h1>
+        ) : (
+          <div>
+          <Jumbotron className="home-input">
         <h1>Write words that inspire</h1>
         <TextField
         fullWidth
@@ -68,6 +73,10 @@ export default function Home() {
       </Jumbotron>
       <DiaryCard />
       <DiaryCard />
+      </div>
+        )
+      }
+      
     </div>
   )
 }

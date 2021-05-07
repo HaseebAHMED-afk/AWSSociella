@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core"
+import { Avatar, Typography } from "@material-ui/core"
 import { Link } from "gatsby"
 import React, { useContext } from "react"
 import { Button, Navbar } from "react-bootstrap"
@@ -24,9 +24,9 @@ const NavBar = () => {
             !user ? (<Button variant="dark" onClick={()=> Auth.federatedSignIn({
               provider: CognitoHostedUIIdentityProvider.Google
             })} > Log In </Button>) : (
-              <div>
-              <Button variant="dark" onClick={() => Auth.signOut()} > Log Out </Button>
-              <Navbar.Brand>{user.signInUserSession.idToken.payload.email}</Navbar.Brand>
+              <div style={{display: 'flex', alignItems: 'center' , justifyContent:'space-between'}} >
+              <Button style={{margin: 5}} variant="dark" onClick={() => Auth.signOut()} > Log Out </Button>
+              <Avatar>{((user.signInUserSession.idToken.payload.email).charAt(0)).toUpperCase()}</Avatar>
               </div>
             )
           }
