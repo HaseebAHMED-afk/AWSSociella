@@ -11,6 +11,7 @@ import moment from 'moment'
 import {API} from 'aws-amplify'
 import {addDiary} from '../graphql/mutations'
 import {getDiaries} from '../graphql/queries'
+import { Fade } from 'react-reveal'
 
 interface postValues {
   title: string
@@ -109,7 +110,9 @@ export default function Home() {
       </Jumbotron>
        {
          data && data.filter((d)=> d.isPublic === true).map((post , i)=> (
+          <Fade bottom >
            <DiaryCard key={i} id={post.id} user={post.user} title={post.title} content={post.content} timestamp={post.timestamp} />
+           </Fade>
          ))
        }
       </div>

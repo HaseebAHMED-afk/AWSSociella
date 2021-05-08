@@ -6,6 +6,7 @@ import { getDiaries } from '../graphql/queries'
 import { deleteDiary } from '../graphql/mutations'
 import {API} from 'aws-amplify' 
 import { Button, Card } from "react-bootstrap"
+import { Fade } from 'react-reveal'
 
 const YourDiary = () => {
 
@@ -32,7 +33,7 @@ const YourDiary = () => {
                     <div className='your-diary-section' >
                     {
                        data && data.filter( (d)=> d.user === user.signInUserSession.idToken.payload.email).map((post,i)=>(
-                    
+                        <Fade bottom >
                         <Card key={i} className="your-diary-card">
                           {post.isPublic ? (
                             <Card.Header style={{ color: "green" }}>Public</Card.Header>
@@ -52,7 +53,7 @@ const YourDiary = () => {
                             }} >Delete</Button>
                           </Card.Body>
                         </Card>
-                      
+                        </Fade>
                        ))
                     }
                     </div>
