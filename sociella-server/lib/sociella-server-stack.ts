@@ -29,8 +29,8 @@ export class SociellaServerStack extends cdk.Stack {
 
     const googleProvider = new cognito.UserPoolIdentityProviderGoogle(this , 'SociellaGoogleProvider' , {
       userPool: userPool,
-      clientId: '1024838224487-6ph9mlb74q471i51cldap0lhvoi16f8h.apps.googleusercontent.com',
-      clientSecret: 'VK2lsGjECZpZ75el2szqiC-g',
+      clientId: '',
+      clientSecret: '',
       attributeMapping:{
         email: cognito.ProviderAttribute.GOOGLE_EMAIL,
         phoneNumber: cognito.ProviderAttribute.GOOGLE_PHONE_NUMBERS,
